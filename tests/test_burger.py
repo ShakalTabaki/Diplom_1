@@ -1,93 +1,95 @@
 from praktikum.burger import Burger
 from unittest.mock import Mock
 
+class TestBurger:
 
-def test_burger_initial_state():
-    burger = Burger()
 
-    assert burger.bun is None
-    assert burger.ingredients == []
+    def test_burger_initial_state():
+        burger = Burger()
 
-def test_set_buns():
-    burger = Burger()
-    bun = Mock()
+        assert burger.bun is None
+        assert burger.ingredients == []
 
-    burger.set_buns(bun)
+    def test_set_buns():
+        burger = Burger()
+        bun = Mock()
 
-    assert burger.bun == bun
+        burger.set_buns(bun)
 
-def test_add_ingredient():
-    burger = Burger()
-    ingredient = Mock()
+        assert burger.bun == bun
 
-    burger.add_ingredient(ingredient)
+    def test_add_ingredient():
+        burger = Burger()
+        ingredient = Mock()
 
-    assert ingredient in burger.ingredients
+        burger.add_ingredient(ingredient)
 
-def test_remove_ingredient():
-    burger = Burger()
-    ingredient1 = Mock()
-    ingredient2 = Mock()
+        assert ingredient in burger.ingredients
 
-    burger.add_ingredient(ingredient1)
-    burger.add_ingredient(ingredient2)
+    def test_remove_ingredient():
+        burger = Burger()
+        ingredient1 = Mock()
+        ingredient2 = Mock()
 
-    burger.remove_ingredient(0)
+        burger.add_ingredient(ingredient1)
+        burger.add_ingredient(ingredient2)
 
-    assert burger.ingredients == [ingredient2]
+        burger.remove_ingredient(0)
 
-def test_move_ingredient():
-    burger = Burger()
-    ingredient1 = Mock()
-    ingredient2 = Mock()
-    ingredient3 = Mock()
+        assert burger.ingredients == [ingredient2]
 
-    burger.add_ingredient(ingredient1)
-    burger.add_ingredient(ingredient2)
-    burger.add_ingredient(ingredient3)
+    def test_move_ingredient():
+        burger = Burger()
+        ingredient1 = Mock()
+        ingredient2 = Mock()
+        ingredient3 = Mock()
 
-    burger.move_ingredient(0, 2)
+        burger.add_ingredient(ingredient1)
+        burger.add_ingredient(ingredient2)
+        burger.add_ingredient(ingredient3)
 
-    assert burger.ingredients == [ingredient2, ingredient3, ingredient1]
+        burger.move_ingredient(0, 2)
 
-def test_get_price():
-    burger = Burger()
+        assert burger.ingredients == [ingredient2, ingredient3, ingredient1]
 
-    bun = Mock()
-    bun.get_price.return_value = 100
+    def test_get_price():
+        burger = Burger()
 
-    ingredient1 = Mock()
-    ingredient1.get_price.return_value = 50
+        bun = Mock()
+        bun.get_price.return_value = 100
 
-    ingredient2 = Mock()
-    ingredient2.get_price.return_value = 30
+        ingredient1 = Mock()
+        ingredient1.get_price.return_value = 50
 
-    burger.set_buns(bun)
-    burger.add_ingredient(ingredient1)
-    burger.add_ingredient(ingredient2)
+        ingredient2 = Mock()
+        ingredient2.get_price.return_value = 30
 
-    price = burger.get_price()
+        burger.set_buns(bun)
+        burger.add_ingredient(ingredient1)
+        burger.add_ingredient(ingredient2)
 
-    assert price == 280
+        price = burger.get_price()
 
-def test_get_receipt():
-    burger = Burger()
+        assert price == 280
 
-    bun = Mock()
-    bun.get_name.return_value = "black bun"
-    bun.get_price.return_value = 100
+    def test_get_receipt():
+        burger = Burger()
 
-    ingredient = Mock()
-    ingredient.get_name.return_value = "sauce"
-    ingredient.get_price.return_value = 50
-    ingredient.get_type.return_value = "SAUCE"
+        bun = Mock()
+        bun.get_name.return_value = "black bun"
+        bun.get_price.return_value = 100
 
-    burger.set_buns(bun)
-    burger.add_ingredient(ingredient)
+        ingredient = Mock()
+        ingredient.get_name.return_value = "sauce"
+        ingredient.get_price.return_value = 50
+        ingredient.get_type.return_value = "SAUCE"
 
-    receipt = burger.get_receipt()
+        burger.set_buns(bun)
+        burger.add_ingredient(ingredient)
 
-    assert "(==== black bun ====)" in receipt
-    assert "= sauce sauce =" in receipt
-    assert "Price: 250" in receipt
-    
+        receipt = burger.get_receipt()
+
+        assert "(==== black bun ====)" in receipt
+        assert "= sauce sauce =" in receipt
+        assert "Price: 250" in receipt
+        
