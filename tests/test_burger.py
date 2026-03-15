@@ -90,3 +90,4 @@ def test_get_receipt():
     assert "(==== black bun ====)" in receipt
     assert "= sauce sauce =" in receipt
     assert "Price: 250" in receipt
+    
