@@ -5,13 +5,13 @@ from unittest.mock import Mock
 class TestBurger:
 
 
-    def test_burger_initial_state():
+    def test_burger_initial_state(self):
         burger = Burger()
 
         assert burger.bun is None
         assert burger.ingredients == []
 
-    def test_set_buns():
+    def test_set_buns(self):
         burger = Burger()
         bun = Mock()
 
@@ -19,7 +19,7 @@ class TestBurger:
 
         assert burger.bun == bun
 
-    def test_add_ingredient():
+    def test_add_ingredient(self):
         burger = Burger()
         ingredient = Mock()
 
@@ -27,7 +27,7 @@ class TestBurger:
 
         assert ingredient in burger.ingredients
 
-    def test_remove_ingredient():
+    def test_remove_ingredient(self):
         burger = Burger()
         ingredient1 = Mock()
         ingredient2 = Mock()
@@ -39,7 +39,7 @@ class TestBurger:
 
         assert burger.ingredients == [ingredient2]
 
-    def test_move_ingredient():
+    def test_move_ingredient(self):
         burger = Burger()
         ingredient1 = Mock()
         ingredient2 = Mock()
@@ -59,9 +59,9 @@ class TestBurger:
             (100, [50], 250),
             (50, [10, 20], 130),
             (30, [], 60),
-        ],
+        ]
     )
-    def test_get_price(bun_price, ingredient_prices, expected):
+    def test_get_price(self, bun_price, ingredient_prices, expected):
         burger = Burger()
 
         bun = Mock()
@@ -75,7 +75,7 @@ class TestBurger:
 
         assert burger.get_price() == expected
 
-    def test_get_receipt():
+    def test_get_receipt(self):
         burger = Burger()
 
         bun = Mock()
